@@ -8,12 +8,16 @@ const utility = require('./lib/utility')
 const parse = utility.parse
 const cleanup = utility.cleanup
 
-function response(message, req, success = false, dados = []) {
+function response(message, req, success, dados) {
+	
+	let success1 = success || false;
+	let dados1 = dados || []
+	
 	return {
-		success,
+		success1,
 		message,
 		req,
-		dados
+		dados1
 	}
 }
 
@@ -54,7 +58,11 @@ function sucesso(res, req) {
 	return falha(data, req)
 }
 
-function consulta(req, timeout = 5000, retries = 2) {
+function consulta(req, timeout, retries = 2) {
+	
+	let timout1 = timeout || 2000;
+	let retries1 = retries || 2;
+	
 	const input = slug(String(req), {
 		lowercase: false,
 		replacement: ' ',
@@ -68,8 +76,8 @@ function consulta(req, timeout = 5000, retries = 2) {
 			metodo: 'buscarCep'
 		},
 		encoding: null,
-		timeout,
-		retries
+		timeout1,
+		retries1
 	}
 	return got
 		.post('http://m.correios.com.br/movel/buscaCepConfirma.do', formData)
