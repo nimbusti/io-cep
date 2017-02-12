@@ -58,7 +58,7 @@ function sucesso(res, req) {
 	return falha(data, req)
 }
 
-function consulta(req, timeout, retries = 2) {
+function consulta(req, timeout, retries) {
 	
 	let timout1 = timeout || 2000;
 	let retries1 = retries || 2;
